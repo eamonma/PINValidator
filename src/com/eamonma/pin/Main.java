@@ -16,25 +16,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//
-//        window = primaryStage;
-//        window.setTitle("Login Page");
-//
-//        TextField username = new TextField();
-//
-//
-//
-//        BorderPane borderPane = new BorderPane();
-//
-//
-//        Scene scene = new Scene(borderPane, 500, 500);
-//
-//        window.setScene(scene);
-//        window.show();
-
-        Parent root = FXMLLoader.load(getClass().getResource("views/home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/login.fxml"));
         primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root, 960, 540));
+        primaryStage.setScene(new Scene(root, 760, 350));
         primaryStage.show();
     }
 
