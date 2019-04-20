@@ -1,21 +1,18 @@
 package com.eamonma.pin;
 
 // javafx imports
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 // regex import
 import java.util.regex.*;
 
 // file reading imports
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
+import java.io.FileWriter;
 
+
+import org.json.simple.*;
 
 public class Controller {
 
@@ -24,6 +21,13 @@ public class Controller {
     public PasswordField password;
 
     public void loginUser() {
+        JSONObject obj = new JSONObject();
+        obj.put("firstName", "John");
+        obj.put("lastName", "Smith");
+
+        HandleJSON.writeJSONToFile(obj);
+
+        System.out.println(obj.toJSONString());
 
         Data data = new Data();
 
