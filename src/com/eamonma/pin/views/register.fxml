@@ -17,7 +17,7 @@
    <children>
       <VBox spacing="20.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Login">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Register">
                <font>
                   <Font name="Roboto Regular" size="30.0" />
                </font>
@@ -25,15 +25,45 @@
             <Region prefHeight="200.0" prefWidth="200.0" />
             <HBox>
                <children>
-                  <Label text="Username or Email">
+                  <Label text="Name">
                      <font>
                         <Font name="Roboto Regular" size="18.0" />
                      </font>
                      <HBox.margin>
-                        <Insets right="20.0" />
+                        <Insets right="127.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="username2" promptText="name">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Username">
+                     <font>
+                        <Font name="Roboto Regular" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="91.0" />
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="username" promptText="username" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Email">
+                     <font>
+                        <Font name="Roboto Regular" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="127.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="username1" promptText="email" />
                </children>
             </HBox>
             <HBox>
@@ -55,15 +85,9 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <Label fx:id="status" />
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="login" mnemonicParsing="false" onAction="#loginUser" text="Login">
-                     <font>
-                        <Font name="Roboto Regular" size="18.0" />
-                     </font>
-                  </Button>
-                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" text="Register">
                      <font>
                         <Font name="Roboto Regular" size="18.0" />

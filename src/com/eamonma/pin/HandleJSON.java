@@ -8,26 +8,64 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Created by eamonma on 2019-04-19.
  */
 public class HandleJSON {
 
-    public static void readJSONFromFile(String filename) { // reads json from file
+    public static boolean userMatch(String username, JSONArray jArr, boolean email) {
 
+        try {
+            for (Object user : jArr) {
+                JSONObject userObj = (JSONObject) user;
+                String name = (String) userObj.get("username");
+                if (email) {
+                    name = (String) userObj.get("email");
+                }
+                if (username.equals(name)) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
+        return false;
+    }
+
+    public static boolean pwMatch(String password, String username, JSONArray jArr, Boolean isEmail) {
+        try {
+            for (Object user : jArr) {
+                JSONObject userObj = (JSONObject) user;
+                if (userObj.get(isEmail ? "email" : "username").equals(username)) {
+                    String pw = (String) userObj.get("password");
+                    if (password.equals(pw)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
+        return false;
+    }
+
+    public static JSONArray readJSONFromFile(String filename) {
+//      reads json from file
+//      returns JSONArray
         JSONParser parser = new JSONParser();
 
-        try (FileReader reader = new FileReader("employees.json"))
-        {
-            //Read JSON file
+        try {
+//            reads the json file
+            FileReader reader = new FileReader(filename);
+
             Object obj = parser.parse(reader);
 
-            JSONArray employeeList = (JSONArray) obj;
-            System.out.println(employeeList);
-
-            //Iterate over employee array
-            employeeList.forEach( emp -> parseObj( (JSONObject) emp ) );
+            return (JSONArray) obj;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -37,16 +75,17 @@ public class HandleJSON {
             e.printStackTrace();
         }
 
-    }
-
-    private static void parseObj(JSONObject obj) {
+        return new JSONArray();
 
     }
 
-    public static void writeJSONToFile(JSONObject obj) {
-        try (FileWriter file = new FileWriter("users.json")) {
+    public static void writeJSONToFile(JSONObject obj, String filename) {
+        JSONArray users = readJSONFromFile(filename);
+        users.add(obj);
 
-            file.write(obj.toJSONString());
+        try (FileWriter file = new FileWriter(filename)) {
+
+            file.write(users.toJSONString());
             file.flush();
 
         } catch (IOException e) {

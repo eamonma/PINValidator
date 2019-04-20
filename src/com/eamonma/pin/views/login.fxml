@@ -10,18 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eamonma.pin.Controller">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eamonma.pin.Controller">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <children>
-      <VBox spacing="10.0">
+      <VBox spacing="20.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" text="Login">
                <font>
                   <Font name="Roboto Regular" size="30.0" />
                </font>
             </Label>
+            <Region prefHeight="200.0" prefWidth="200.0" />
             <HBox>
                <children>
                   <Label text="Username or Email">
@@ -54,16 +55,17 @@
                   <Insets />
                </VBox.margin>
             </HBox>
+            <Label fx:id="status" />
             <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" fx:id="login" onAction="#loginUser" text="Login">
+                  <Button fx:id="login" mnemonicParsing="false" onAction="#loginUser" text="Login">
                      <font>
                         <Font name="Roboto Regular" size="18.0" />
                      </font>
                   </Button>
                   <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="Register">
+                  <Button fx:id="register" mnemonicParsing="false" onAction="#switchToRegisterView" text="Register">
                      <font>
                         <Font name="Roboto Regular" size="18.0" />
                      </font>
@@ -72,5 +74,14 @@
             </HBox>
          </children>
       </VBox>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="By Eamon Ma">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </VBox>
