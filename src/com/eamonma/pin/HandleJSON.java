@@ -16,13 +16,13 @@ import java.util.ArrayList;
  */
 public class HandleJSON {
 
-    public static boolean userMatch(String username, JSONArray jArr, boolean email) {
+    public static boolean userMatch(String username, JSONArray jArr, Boolean isEmail) {
 
         try {
             for (Object user : jArr) {
                 JSONObject userObj = (JSONObject) user;
                 String name = (String) userObj.get("username");
-                if (email) {
+                if (isEmail) {
                     name = (String) userObj.get("email");
                 }
                 if (username.equals(name)) {
@@ -34,6 +34,25 @@ public class HandleJSON {
         }
 
         return false;
+    }
+
+    public static JSONObject getUser(String username, JSONArray jArr, Boolean isEmail) {
+        try {
+            for (Object user : jArr) {
+                JSONObject userObj = (JSONObject) user;
+                String name = (String) userObj.get("username");
+                if (isEmail) {
+                    name = (String) userObj.get("email");
+                }
+                if (username.equals(name)) {
+                    return userObj;
+                }
+            }
+        } catch (Exception e) {
+            return new JSONObject();
+        }
+
+        return new JSONObject();
     }
 
     public static boolean pwMatch(String password, String username, JSONArray jArr, Boolean isEmail) {
@@ -94,4 +113,5 @@ public class HandleJSON {
 
         }
     }
+
 }

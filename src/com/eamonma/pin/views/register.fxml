@@ -6,7 +6,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -15,14 +14,13 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <children>
-      <VBox spacing="20.0">
+      <VBox spacing="15.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" text="Register">
                <font>
                   <Font name="Roboto Regular" size="30.0" />
                </font>
             </Label>
-            <Region prefHeight="200.0" prefWidth="200.0" />
             <HBox>
                <children>
                   <Label text="Name">
@@ -33,7 +31,7 @@
                         <Insets right="127.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="username2" promptText="name">
+                  <TextField fx:id="regName" promptText="name">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -63,7 +61,7 @@
                         <Insets right="127.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="username1" promptText="email" />
+                  <TextField fx:id="regEmail" promptText="email" />
                </children>
             </HBox>
             <HBox>
@@ -74,7 +72,8 @@
                      </font>
                      <HBox.margin>
                         <Insets right="93.0" />
-                     </HBox.margin></Label>
+                     </HBox.margin>
+                  </Label>
                   <PasswordField fx:id="password" promptText="password">
                      <HBox.margin>
                         <Insets />
@@ -85,10 +84,27 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <Label fx:id="status" />
+            <HBox>
+               <children>
+                  <Label text="Confirm Password">
+                     <font>
+                        <Font name="Roboto Regular" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="24.0" />
+                     </HBox.margin>
+                  </Label>
+                  <PasswordField fx:id="confirmPassword" promptText="password">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <Label fx:id="status" text="Label" />
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Register">
+                  <Button fx:id="registerButton" mnemonicParsing="false" onAction="#register" text="Register">
                      <font>
                         <Font name="Roboto Regular" size="18.0" />
                      </font>
@@ -97,14 +113,5 @@
             </HBox>
          </children>
       </VBox>
-      <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label text="By Eamon Ma">
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
    </children>
 </VBox>

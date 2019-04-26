@@ -1,6 +1,7 @@
 package com.eamonma.pin;
 
 // javafx imports
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -24,14 +25,23 @@ import javafx.stage.Stage;
 import jdk.internal.org.objectweb.asm.Handle;
 import org.json.simple.*;
 
+import javax.xml.soap.Text;
+
 public class Controller {
 
     public Stage primaryStage;
+    public static Stage defaultStage;
 
 //      username and password
+    @FXML
+    public TextField regName;
     public TextField username;
+    public TextField regEmail;
     public PasswordField password;
+    public PasswordField confirmPassword;
+    public Label greeting;
     public Label status;
+
 
     public void loginUser() {
 //      handles the user clicking login
@@ -50,21 +60,55 @@ public class Controller {
         System.out.println(canLogIn);
 
         if(canLogIn) {
-            status.setTextFill(Color.web("#27ae60"));
-            status.setText("Success!");
+            JSONArray users = HandleJSON.readJSONFromFile("users.json");
+            try {
+                notify("Success!", canLogIn);
+                load("views/home.fxml", "Home", defaultStage);
+                JSONObject person = HandleJSON.getUser(usernameText, users, isEmail);
+                String fullName = person.get("firstName") + " " + person.get("lastName");
+//                System.out.println(greeting);
+//                System.out.println(greeting.getText());
+                //                greeting.setText("Hello, " + fullName);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
-            status.setTextFill(Color.web("#c0392b"));
-            status.setText("Please enter a valid username/password!");
+            notify("Please enter a valid username/password!", canLogIn);
         }
 
     }
 
     public void switchToRegisterView() {
         try {
-            load("views/register.fxml", "Register", this.primaryStage);
+            load("views/register.fxml", "Register", defaultStage);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void register() {
+        try {
+            String nameText = regName.getText();
+            String usernameText = username.getText();
+            String emailText = regEmail.getText();
+            String passwordText = password.getText();
+            String confirmPasswordText = confirmPassword.getText();
+
+
+            System.out.println(nameText + usernameText + emailText + passwordText);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void notify(String message, Boolean state) {
+//        state true is success
+        if(state) {
+            status.setTextFill(Color.web("#27ae60"));
+        } else {
+            status.setTextFill(Color.web("#c0392b"));
+        }
+        status.setText(message);
     }
 
     public void load(String view, String title, Stage stage) throws Exception {
@@ -120,4 +164,5 @@ class U {
         }
         return false;
     }
+
 }
